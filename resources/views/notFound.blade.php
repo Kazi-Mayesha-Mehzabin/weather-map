@@ -21,6 +21,7 @@
         </style>
     </head>
     <body class="antialiased">
-       <h2 style="text-align:center;">City Not Found</h2>
+       <h1 style="text-align:center; margin-top:300px;">City Not Found</h1>
+        <h2 style="text-align:center; ">Please make sure you entered the right city name</h2>
     </body>
 </html>
