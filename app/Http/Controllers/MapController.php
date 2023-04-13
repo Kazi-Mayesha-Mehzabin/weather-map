@@ -20,14 +20,18 @@ class MapController extends Controller
         $query = $request->location;
         }
         $client = new \GuzzleHttp\Client();
-
+        $flag = 1;
         $request = new \GuzzleHttp\Psr7\Request('GET', "http://api.openweathermap.org/data/2.5/forecast?q=".$query."&appid=77d7317d8efb6cb428247950e1165a20");
         
         try{
             $promise = $client->sendAsync($request)->then(function ($response) {
           
-                dd($response->getStatusCode());
+               return $response->getBody();
          
+        },function($reason){
+            $flag = 0;
+          
+        
         });
     }
        catch (ClientException $e){
@@ -36,13 +40,11 @@ class MapController extends Controller
        } $result = $promise->wait();
       
        
-        $json=json_decode($result,true);
-        if($json['cod']!=='200'){
-          
-             
-        }
+       
+       
     
-
-        return view('index', ['result' => json_decode($result,true)]);
+     
+        if(isset($result))return view('index', ['result' => json_decode($result,true)]);
+        else   return view('notFound');
     }
 }

@@ -190,14 +190,14 @@
 
 			<footer class="site-footer">
 				<div class="container">
-					<div class="row">
+					<div style="justify-content:center;align-items:center; margin-left:460px; " class="row">
 						
 						<div class="col-md-3 col-md-offset-1">
 							<div class="social-links">
-								<a href="#"><i class="fa fa-facebook"></i></a>
-								<a href="#"><i class="fa fa-twitter"></i></a>
-								<a href="#"><i class="fa fa-google-plus"></i></a>
-								<a href="#"><i class="fa fa-pinterest"></i></a>
+								<a href="https://www.facebook.com/profile.php?id=100012228454586&mibextid=ZbWKwL" target="_blank"><i class="fa fa-facebook"></i></a>
+								<a href="http://www.linkedin.com/in/kazi-mayesha-mehzabin-343197228" target="_blank"><i class="fa fa-linkedin-square" style="font-size:24px"></i></a>
+								<a href="https://github.com/Kazi-Mayesha-Mehzabin" target="_blank"><i class="fa fa-github" style="font-size:24px"></i></a>
+							
 							</div>
 						</div>
 					</div>
