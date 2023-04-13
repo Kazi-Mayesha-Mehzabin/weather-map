@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -10,7 +11,7 @@ use Illuminate\Http\Request;
 
 class MapController extends Controller
 {
-    public static $WEATHER_URL = "http://api.openweathermap.org/data/2.5/forecast?q=dhaka,bangladesh&appid=d3cd7162f9d6c60ebc6a25565f75fdd3";
+    public static $WEATHER_URL = "http://api.openweathermap.org/data/2.5/forecast?q=dhaka,bangladesh&appid=77d7317d8efb6cb428247950e1165a20";
 
     function viewIndex( Request $request)
     {
@@ -20,14 +21,26 @@ class MapController extends Controller
         }
         $client = new \GuzzleHttp\Client();
 
-        $request = new \GuzzleHttp\Psr7\Request('GET', "http://api.openweathermap.org/data/2.5/forecast?q=".$query."&appid=d3cd7162f9d6c60ebc6a25565f75fdd3");
-
-        $promise = $client->sendAsync($request)->then(function ($response) {
-          
+        $request = new \GuzzleHttp\Psr7\Request('GET', "http://api.openweathermap.org/data/2.5/forecast?q=".$query."&appid=77d7317d8efb6cb428247950e1165a20");
         
-            return  $response->getBody();
+        try{
+            $promise = $client->sendAsync($request)->then(function ($response) {
+          
+                dd($response->getStatusCode());
+         
         });
-        $result = $promise->wait();
+    }
+       catch (ClientException $e){
+        dd('city not found');
+
+       } $result = $promise->wait();
+      
+       
+        $json=json_decode($result,true);
+        if($json['cod']!=='200'){
+          
+             
+        }
     
 
         return view('index', ['result' => json_decode($result,true)]);

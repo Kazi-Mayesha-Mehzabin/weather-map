@@ -75,7 +75,7 @@
                                     {{ $result['list'][0]['weather']['0']['description'] }}
                                 </span>
 								<span><img src="images/icon-wind.png" alt="">{{ ($result['list'][0]['wind']['speed']) }}km/h</span>
-								<span><img src="images/icon-compass.png" alt="">East</span>
+								
 							</div>
 						</div>
 						<div class="forecast">
